@@ -1,0 +1,72 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct studentType
+{
+    string first;
+    string last;
+    int testScore;
+    char grade;
+};
+
+char Grade(int score)
+{
+    if (score >= 90)
+        return 'A';
+    else if (score >= 80)
+        return 'B';
+    else if (score >= 70)
+        return 'C';
+    else if (score >= 60)
+        return 'D';
+    else
+        return 'F';
+}
+
+int main()
+{
+    studentType classList[20];
+    int jumlahSiswa;
+
+    cout << "Masukkan jumlah siswa  : ";
+    cin >> jumlahSiswa;
+
+    for (int i = 0; i < jumlahSiswa; i++)
+    {
+        cout << "\nSiswa ke-" << i + 1 << endl;
+        cout << "Nama depan         : ";
+        cin >> classList[i].first;
+        cout << "Nama belakang      : ";
+        cin >> classList[i].last;
+        cout << "Nilai tes (0-100)  : ";
+        cin >> classList[i].testScore;
+
+        classList[i].grade = Grade(classList[i].testScore);
+    }
+
+    int highest = classList[0].testScore;
+    for (int i = 1; i < jumlahSiswa; i++)
+    {
+        if (classList[i].testScore > highest)
+            highest = classList[i].testScore;
+    }
+
+    cout << "\nData Siswa \n";
+    for (int i = 0; i < jumlahSiswa; i++)
+    {
+        cout << classList[i].last << ", " << classList[i].first
+             << " || Nilai: " << classList[i].testScore
+             << " || Grade: " << classList[i].grade << endl;
+    }
+
+    cout << "\nNilai tertinggi    : " << highest << endl;
+    cout << "Diperoleh oleh     : ";
+    for (int i = 0; i < jumlahSiswa; i++)
+    {
+        if (classList[i].testScore == highest)
+            cout << classList[i].last << ", " << classList[i].first << endl;
+    }
+
+    return 0;
+}
